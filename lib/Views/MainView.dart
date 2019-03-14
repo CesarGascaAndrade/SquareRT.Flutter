@@ -25,27 +25,50 @@ class _MainViewState extends State<MainView> {
           ),
           body: Padding(
             padding: const EdgeInsets.all(15.0),
-            child: Center(
-              child: Column(
-                mainAxisAlignment: MainAxisAlignment.center,
-                children: <Widget>[
-                  TextField(
-                    keyboardType: TextInputType.number,
-                    decoration: InputDecoration(
-                      labelText: 'Number',
-                      filled: true,
-                      fillColor: Colors.white,
+            child: ListView(
+              children: [
+                Column(
+                  children: <Widget>[
+                    Text(
+                      model.result.toString(),
+                      style: TextStyle(
+                        fontSize: 30,
+                      ),
                     ),
-                    onChanged: (value) {
-                      print('changed');
-                      model.calculate(double.parse(value));
-                    },
-                  ),
-                  Text(
-                    model.result.toString(),
-                  ),
-                ],
-              ),
+                    Stack(
+                      //mainAxisAlignment: MainAxisAlignment.center,
+                      children: <Widget>[
+                        Container(
+                          child: Image.asset('assets/squareRoot.jpg'),
+                        ),
+                        Positioned(
+                          top: 30,
+                          right: 0,
+                          width: 400,
+                          child: FractionallySizedBox(
+                            widthFactor: 0.65,
+                            alignment: Alignment.centerRight,
+                            child: Container(
+                              child: TextField(
+                                keyboardType: TextInputType.number,
+                                decoration: InputDecoration(
+                                  labelText: 'Your Number',
+                                  filled: true,
+                                  //fillColor: Colors.white,
+                                ),
+                                onChanged: (value) {
+                                  print('changed');
+                                  model.calculate(double.parse(value));
+                                },
+                              ),
+                            ),
+                          ),
+                        ),
+                      ],
+                    ),
+                  ],
+                )
+              ],
             ),
           ),
         );
