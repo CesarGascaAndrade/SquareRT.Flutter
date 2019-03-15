@@ -27,46 +27,48 @@ class _MainViewState extends State<MainView> {
             padding: const EdgeInsets.all(15.0),
             child: ListView(
               children: [
-                Column(
-                  children: <Widget>[
-                    Text(
-                      model.result.toString(),
-                      style: TextStyle(
-                        fontSize: 30,
-                      ),
-                    ),
-                    Stack(
-                      //mainAxisAlignment: MainAxisAlignment.center,
+                Center(
+                  child: SizedBox(
+                    width: 300,
+                    child: Column(
                       children: <Widget>[
-                        Container(
-                          child: Image.asset('assets/squareRoot.jpg'),
+                        Text(
+                          model.result.toString(),
+                          style: TextStyle(
+                            fontSize: 30,
+                          ),
                         ),
-                        Positioned(
-                          top: 30,
-                          right: 0,
-                          width: 400,
-                          child: FractionallySizedBox(
-                            widthFactor: 0.65,
-                            alignment: Alignment.centerRight,
-                            child: Container(
-                              child: TextField(
-                                keyboardType: TextInputType.number,
-                                decoration: InputDecoration(
-                                  labelText: 'Your Number',
-                                  filled: true,
-                                  //fillColor: Colors.white,
+                        Stack(
+                          //mainAxisAlignment: MainAxisAlignment.center,
+                          children: <Widget>[
+                            Image.asset('assets/squareRoot.jpg'),
+                            Positioned(
+                              top: 30,
+                              left: 0,
+                              width: 400,
+                              child: FractionallySizedBox(
+                                widthFactor: 0.65,
+                                child: TextField(
+                                  keyboardType: TextInputType.number,
+                                  decoration: InputDecoration(
+                                    labelText: 'Your Number',
+                                    filled: true,
+                                    //fillColor: Colors.white,
+                                  ),
+                                  onChanged: (value) {
+                                    if(value == '') {
+                                      value = '0';
+                                    }
+                                    model.calculate(double.parse(value));
+                                  },
                                 ),
-                                onChanged: (value) {
-                                  print('changed');
-                                  model.calculate(double.parse(value));
-                                },
                               ),
                             ),
-                          ),
+                          ],
                         ),
                       ],
                     ),
-                  ],
+                  ),
                 )
               ],
             ),

@@ -3,8 +3,14 @@ import 'package:scoped_model/scoped_model.dart';
 
 class SquareRtViewModel extends Model {
   void calculate(double number) {
-    result = sqrt(number);
-    print('oli');
+    print(number);
+    if(number < 1) {
+      result = 0;
+    }
+    else {
+      result = sqrt(number);
+    }
+
     notifyListeners();
   }
 
